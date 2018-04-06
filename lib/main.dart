@@ -6,6 +6,7 @@ import 'package:rutter/post/json_tags.dart';
 import 'package:rutter/post/content.dart';
 import 'package:flutter/material.dart';
 import 'package:rutter/post/post_data.dart' as postData;
+import 'package:timeago/timeago.dart';
 
 void main() => runApp(new MyApp());
 
@@ -50,6 +51,7 @@ class PostState extends State<Posts> {
                 kid[data][permalink],
                 kid[data][upvotes],
                 kid[data][numComments],
+                kid[data][dateTime],
                 kid[data][over18]));
           }
         }
@@ -73,17 +75,47 @@ class PostState extends State<Posts> {
       appBar: new AppBar(
         title: new Text('Front Page'),
       ),
-      body: new ListView.builder(
-        itemCount: allPosts.length,
-        itemBuilder: (BuildContext context, int index){
-          if(index >= allPosts.length - 2){
-            _get(index.toString());
-          }
-          return new Card(
-            child: new Text(allPosts[index].title),
-          );
-        },
-      ),
+      body: new PageView.builder(
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (_cardBuilder, int index) {
+            Content post = allPosts[index];
+            if (index >= allPosts.length - 2) {
+              _get(index.toString());
+            }
+            return new Card(
+              child: new Column(
+                children: <Widget>[
+                  new Padding(
+                    padding: new EdgeInsets.fromLTRB(2.0, 12.0, 2.0, 0.0),
+                    child: new ListTile(
+                      title: new Text(
+                        post.title,
+                        textAlign: TextAlign.left,
+                        style: new TextStyle(
+                            fontSize: 16.5, fontWeight: FontWeight.w500),
+                      ),
+                      subtitle: new Padding(
+                          padding: new EdgeInsets.only(top: 4.0),
+                          child: new Text(
+                              'by u/${post.author} in r/${post.subreddit}\n'
+                              '${timeAgo(
+
+                                  new DateTime.fromMillisecondsSinceEpoch(
+                                      post.dateTime.floor() * 1000,
+                                      isUtc: true))}'
+                          )
+                      ),
+                      trailing: new Text(
+                        post.upvotes.toString(),
+                        style: new TextStyle(
+                            fontSize: 16.0, fontWeight: FontWeight.w900),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            );
+          }),
     );
   }
 }
