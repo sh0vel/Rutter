@@ -4,18 +4,22 @@ class Content {
   String _subreddit;
   String _postHint;
   String _permaLink;
-  num _ups;
+  num _upvotes;
   num _numOfComments;
+  num _dateTime;
   bool _over18;
 
   Content(this._title, this._author, this._subreddit, this._postHint,
-      this._permaLink, this._ups, this._numOfComments, this._over18);
+      this._permaLink, this._upvotes, this._numOfComments, this._dateTime,
+      this._over18);
 
   bool get over18 => _over18;
 
+  num get dateTime => _dateTime;
+
   num get numOfComments => _numOfComments;
 
-  num get ups => _ups;
+  num get upvotes => _upvotes;
 
   String get permaLink => _permaLink;
 
@@ -26,11 +30,4 @@ class Content {
   String get author => _author;
 
   String get title => _title;
-
-  @override
-  String toString() {
-    return '_author: $_author';
-  }
-
-
 }
