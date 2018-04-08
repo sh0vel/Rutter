@@ -3,18 +3,12 @@ import 'package:rutter/post/content.dart';
 import 'package:timeago/timeago.dart';
 
 Widget postHeaderUI(Content post) {
-  return new Card(
-    child: new Column(
-      children: <Widget>[
-        new Padding(
-          padding: new EdgeInsets.fromLTRB(2.0, 12.0, 2.0, 0.0),
-          child: new ListTile(
-            title: _title(post.title),
-            subtitle: _subtitle(post.author, post.subreddit, post.dateTime),
-            trailing: _trailing(post.upvotes),
-          ),
-        )
-      ],
+  return new Padding(
+    padding: new EdgeInsets.fromLTRB(2.0, 12.0, 2.0, 0.0),
+    child: new ListTile(
+      title: _title(post.title),
+      subtitle: _subtitle(post.author, post.subreddit, post.dateTime),
+      trailing: _trailing(post.upvotes),
     ),
   );
 }

@@ -1,7 +1,7 @@
 import 'package:rutter/post/content.dart';
 import 'package:flutter/material.dart';
 import 'package:rutter/post/http.dart';
-import 'package:rutter/post/header.dart';
+import 'package:rutter/post/postui.dart';
 
 void main() => runApp(new MyApp());
 
@@ -41,10 +41,10 @@ class PostState extends State<Posts> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: new AppBar(
-          title: new Text('Front Page'),
-        ),
-        body: _pageView(),
+      appBar: new AppBar(
+        title: new Text('Front Page'),
+      ),
+      body: _pageView(),
     );
   }
 
@@ -57,7 +57,7 @@ class PostState extends State<Posts> {
           if (index >= allPosts.length - 2) {
             _get();
           }
-          return postHeaderUI(post);
+          return postUI(post);
         });
   }
 }
