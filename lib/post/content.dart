@@ -4,6 +4,7 @@ class Content {
   String _subreddit;
   String _postHint;
   String _permaLink;
+  String _imageSrc;
   num _upvotes;
   num _numOfComments;
   num _dateTime;
@@ -11,7 +12,7 @@ class Content {
 
   Content(this._title, this._author, this._subreddit, this._postHint,
       this._permaLink, this._upvotes, this._numOfComments, this._dateTime,
-      this._over18);
+      this._over18, this._imageSrc);
 
   bool get over18 => _over18;
 
@@ -30,4 +31,6 @@ class Content {
   String get author => _author;
 
   String get title => _title;
+
+  String get imgSrc => _imageSrc;
 }

@@ -19,6 +19,8 @@ Future getFrontpage(List<Content> allPosts) async {
       _after = decoded[data][after];
       List kids = decoded[data][children];
       for (var kid in kids) {
+        List ar = kid[data][preview][images];
+        var _source = ar[0][source][url];
         allPosts.add(new Content(
             kid[data][title],
             kid[data][author],
@@ -28,7 +30,8 @@ Future getFrontpage(List<Content> allPosts) async {
             kid[data][upvotes],
             kid[data][numComments],
             kid[data][dateTime],
-            kid[data][over18]));
+            kid[data][over18],
+            _source));
       }
     }
   }
