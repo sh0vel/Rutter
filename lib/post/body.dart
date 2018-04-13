@@ -8,13 +8,12 @@ Widget postBodyUI(Content post) {
   String postHint = post.postHint;
   if (postHint != null) {
     print(postHint);
-    if (postHint == "image") {
-      return new Image.network(post.imgSrc);
+    if (postHint == "image" || postHint == 'rich:video') {
+      return new Image.network(post.contentSrcUrl);
     } else if(postHint.contains('video')){
       final playerWidget = new Chewie(
-        new VideoPlayerController(
-            'https://.github.io/assets-for-api-docs/videos/butterfly.mp4'
-        ),
+        new VideoPlayerController.network(
+            'https://flutter.github.io/assets-for-api-docs/videos/butterfly.mp4'),
         aspectRatio: 3 / 2,
         autoPlay: true,
         looping: true,
