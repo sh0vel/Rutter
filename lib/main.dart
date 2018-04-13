@@ -53,7 +53,8 @@ class PostState extends State<Posts> {
         scrollDirection: Axis.horizontal,
         itemBuilder: (_cardBuilder, int index) {
           Content post = allPosts[index];
-          print(allPosts.length);
+          print(post.contentSrcUrl);
+          print(post.permaLink);
           if (index >= allPosts.length - 2) {
             _get();
           }
