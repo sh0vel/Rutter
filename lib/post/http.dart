@@ -18,9 +18,18 @@ Future getFrontpage(List<Content> allPosts) async {
     if (decoded[data][after] != _after) {
       _after = decoded[data][after];
       List kids = decoded[data][children];
+
       for (var kid in kids) {
-        List ar = kid[data][preview][images];
-        var _source = ar[0][source][url];
+        var _contentSrcUrl;
+        var _postHint = kid[data][postHint];
+
+        switch(_postHint){
+          case 'image': _contentSrcUrl = kid[data][url]; break;
+          case 'rich:video':
+            List ar = kid[data][preview][images];
+            _contentSrcUrl = ar[0][variants][gif][source][url]; break;
+        }
+
         allPosts.add(new Content(
             kid[data][title],
             kid[data][author],
@@ -31,7 +40,7 @@ Future getFrontpage(List<Content> allPosts) async {
             kid[data][numComments],
             kid[data][dateTime],
             kid[data][over18],
-            _source));
+            _contentSrcUrl));
       }
     }
   }
