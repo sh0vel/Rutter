@@ -17,11 +17,15 @@ final title = 'title';
 final upvotes = 'ups';
 final dateTime = 'created_utc';
 
+final source = 'source';
+
 //images
 final preview = 'preview';
 final images = 'images';
-final source = 'source';
 final resolutions = 'resolutions';
-final imageUrl = 'url';
 final imageWidth = 'width';
 final imageHeight = 'height';
+
+//gifs
+final variants = 'variants';
+final gif = 'gif';
